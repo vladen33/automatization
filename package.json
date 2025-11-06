@@ -16,12 +16,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 'Привет!'",
-    "check": "prettier --check './src/**/*.{html,css,js}'",
-    "format": "prettier --write './src/**/*.{html,css,js}'",
-    "lint": "stylelint './src/**/*.css'",
+    "check": "prettier --check './{src,dist}/**/*.{html,css,js}'",
+    "formatSrc": "prettier --write './src/**/*.{html,css,js}'",
+    "formatDist": "prettier --write './dist/**/*.{html,css,js}'",
+    "lint": "stylelint './{src,dist}/**/*.css'",
     "lintfix": "stylelint './src/**/*.css' --fix",
+    "lintfixDist": "stylelint './dist/**/*.css' --fix",
     "checkAll": "npm run check && npm run lint",
-    "fixAll": "npm run format && npm run lintfix"
+    "fixAll": "npm run formatSrc && npm run lintfix && npm run formatDist && npm run lintfixDist"
   },
   "devDependencies": {
     "browser-sync": "^3.0.4",

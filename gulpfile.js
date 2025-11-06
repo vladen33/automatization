@@ -19,5 +19,13 @@ function css() {
         .pipe(gulp.dest('dist/'))
 }
 
-exports.css = css;
+function images() {
+    return gulp.src('src/images/**/*.{jpg,png,svg,gif,ico,webp,avif}')
+        .pipe(gulp.dest('dist/images'))
+}
+
+
+
 exports.html = html;
+exports.css = css;
+exports.images = images;
