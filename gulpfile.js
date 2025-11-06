@@ -12,4 +12,12 @@ function html() {
 }
 
 
+function css() {
+    return gulp.src('src/blocks/**/*.css')
+        .pipe(plumber())
+        .pipe(concat('bundle.css'))
+        .pipe(gulp.dest('dist/'))
+}
+
+exports.css = css;
 exports.html = html;
