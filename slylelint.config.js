@@ -1,80 +1,124 @@
 module.exports = {
-  // Базовые конфигурации (рекомендуемые)
-  extends: [
-    'stylelint-config-standard',
-    'stylelint-config-recommended-scss',
-  ],
-
-  // Правила форматирования
   rules: {
-    'indentation': 2,
-    'number-leading-zero': 'always',
-    'string-quotes': 'double',
-    'no-duplicate-selectors': true,
-    'no-empty-source': true,
+    // Цвета и HEX‑коды
+    'color-no-invalid-hex': true,
+        // Что делает: запрещает некорректные HEX‑цвета (например, #xyz, #1234, #gggggg).
+        // Зачем: предотвращает ошибки в цветах, которые браузер может проигнорировать.
 
-    // Свойства и значения
-    'property-case': 'lower',
-    'value-case': 'lower',
-    'unit-case': 'lower',
-    'declaration-block-trailing-semicolon': 'always',
-    'declaration-colon-space-after': 'always',
-    'declaration-colon-space-before': 'never',
+    'color-hex-length': 'short',
+        // Что делает: требует сокращённую форму HEX, если возможно (#ff0 вместо #ffff00).
+        // Зачем: уменьшает размер CSS и поддерживает единообразие.
 
-    // Селекторы
-    'selector-class-pattern': '^[a-z][a-z0-9\\-]*$',
-    'selector-id-pattern': '^[a-z][a-z0-9\\-]*$',
-    'selector-pseudo-class-case': 'lower',
-    'selector-pseudo-element-case': 'lower',
+    'alpha-value-notation': 'number',
+        // Что делает: заставляет использовать числовые значения для прозрачности (rgba(0, 0, 0, 0.5)), а не проценты (rgba(0, 0, 0, 50%)).
+        // Зачем: числа проще для восприятия и вычислений.
 
-    // Блочные конструкции
-    'block-opening-brace-space-before': 'always',
-    'block-closing-brace-newline-after': 'always-multi-line',
-    'block-no-empty': true,
+    'color-function-notation': 'modern',
+        // Что делает: требует использовать современную запись (rgb(0 0 0 / 0.5)) вместо старой (rgba(0, 0, 0, 0.5)).
+        // Зачем: соответствует новым стандартам CSS.
 
-    // Отступы и переносы
-    'max-empty-lines': 1,
-    'no-extra-semicolons': true,
-    'no-invalid-double-slash-comments': true,
 
-    // Цвета
-    'color-hex-case': 'lower',
-    'color-named': 'never',
+    // Ключевые слова и регистр
+    'value-keyword-case': ['lower', { camelCaseSvgKeywords: true }],
+        // Что делает:
+            // lower — все ключевые слова в нижнем регистре (red, bold, center).
+            // camelCaseSvgKeywords — разрешает camelCase для SVG‑ключевых слов (fillRule).
+        // Зачем: единообразие и совместимость с SVG.
 
-    // Шрифты
-    'font-family-name-quotes': 'always-unless-keyword',
-    'font-weight-notation': 'numeric',
+    'selector-type-case': 'lower',
+        // Что делает: селекторы‑типы (div, span) должны быть в нижнем регистре.
+        // Зачем: избегает путаницы (DIV vs div).
 
-    // Медиа-запросы
-    'media-feature-name-case': 'lower',
-    'media-feature-parentheses-space-inside': 'never',
 
-    // Псевдоклассы/псевдоэлементы
-    'selector-pseudo-class-no-unknown': [
-      true,
-      {
-        ignorePseudoClasses: ['global'],
-      },
-    ],
+    //Проверка валидности
+    'property-no-unknown': true,
+        // Что делает: запрещает неизвестные CSS‑свойства (например, colorr: red).
+        // Зачем: ловит опечатки и устаревшие свойства.
 
-    // SCSS-специфичные правила
-    'scss/dollar-variable-colon-space-after': 'always',
-    'scss/dollar-variable-colon-space-before': 'never',
-    'scss/at-import-partial-extension': 'never',
-    'scss/at-mixin-pattern': '^[a-z][a-z0-9\\-]*$',
-    'scss/at-function-pattern': '^[a-z][a-z0-9\\-]*$',
-    'scss/selector-no-redundant-nesting-selector': true,
+    'media-feature-name-no-unknown': true,
+        // Что делает: проверяет корректность имён в медиа‑запросах (min-width, orientation).
+        // Зачем: предотвращает неработающие медиа‑запросы.
+
+    'no-unknown-animations': true,
+        // Что делает: гарантирует, что animation-name ссылается на существующее @keyframes.
+        // Зачем: избегает «мёртвых» анимаций.
+
+
+    // Дублирование и избыточность
+    'declaration-block-no-duplicate-properties': true,
+        // Что делает: запрещает дублирующие свойства в блоке ({ color: red; color: blue; }).
+        // Зачем: снижает вероятность ошибок и избыточности.
+
+    'declaration-block-no-shorthand-property-overrides': true,
+        // Что делает: не позволяет переопределять сокращённые свойства отдельными (margin: 10px; margin-top: 5px;).
+        // Зачем: делает код предсказуемым и избегает конфликтов.
+
+    'shorthand-property-no-redundant-values': true,
+        // Что делает: удаляет избыточные значения в сокращённых свойствах (margin: 10px 10px 10px 10px → margin: 10px).
+        // Зачем: сокращает объём CSS.
+
+
+    // Специфичность и порядок
+        'no-descending-specificity': true,
+        // Что делает: предупреждает, если селектор ниже в коде имеет меньшую специфичность, чем предыдущий (риск переопределения).
+        // Зачем: помогает избежать неожиданного поведения стилей.
+
+    ' no-duplicate-selectors': true,
+        // Что делает: запрещает повторяющиеся селекторы в одном файле.
+        // Зачем: упрощает поддержку кода.
+
+
+    // Правила для @‑правил
+    'no-invalid-position-at-import-rule': true,
+        // Что делает: следит, чтобы @import был в начале файла (по стандарту CSS).
+        // Зачем: предотвращает проблемы с загрузкой стилей.
+
+    'at-rule-empty-line-before': 'always',
+        // Что делает: добавляет пустую строку перед @‑правилами (@media, @keyframes).
+        // Зачем: улучшает читаемость.
+
+
+    // Комментарии и форматирование
+    'comment-no-empty': true,
+        // Что делает: запрещает пустые комментарии (/* */).
+        // Зачем: убирает «мусор» из кода.
+
+    'rule-empty-line-before': 'always',
+        // Что делает: требует пустую строку перед каждым селектором/правилом.
+        // Зачем: структурирует код.
+
+
+    // Единицы измерения и URL
+    'length-zero-no-unit': true,
+        // Что делает: пишет 0 без единиц (0px → 0).
+        // Зачем: стандарт CSS разрешает 0 без единиц.
+
+    'function-url-quotes': 'never',
+        // Что делает: убирает кавычки в url() (url("image.png") → url(image.png)).
+        // Зачем: сокращает размер CSS.
+
+    'import-notation': 'url',
+        // Что делает: использует синтаксис url() для @import, а не строки (@import url("file.css");).
+        // Зачем: соответствует спецификациям CSS.
+
+
+    // Прочие ограничения
+    'declaration-no-important': true,
+        // Что делает: запрещает !important в объявлениях.
+        // Зачем: стимулирует писать более специфичные селекторы, избегая хаков.
+
+    'declaration-block-single-line-max-declarations': 1,
+        // Что делает: ограничивает однострочные блоки одним объявлением ({ color: red; } — ок, { color: red; margin: 0; } — ошибка).
+        // Зачем: повышает читаемость.
+
+
+    // Отключение правил
+    'selector-class-pattern': null,
+        // Что делает: отключает проверку имён классов (по умолчанию Stylelint требует строчные буквы и дефисы).
+        // Зачем: если вы используете другой стиль именования (например, BEM или camelCase), можно отключить или настроить шаблон.
+        
+    'font-family-name-quotes': 'always-where-recommended',
+        // Что делает: ставит кавычки только там, где это требуется (например, для имён с пробелами: "Times New Roman").
+        // Зачем: баланс между чистотой кода и стандартами CSS.
   },
-
-  // Файлы/папки для игнорирования
-  ignoreFiles: [
-    '**/*.min.css',
-    'node_modules/**',
-    'dist/**',
-    '.git/**',
-    'coverage/**',
-  ],
-
-  // Дополнительные настройки
-  defaultSeverity: 'error', // Уровень серьёзности по умолчанию
-};
+}; 
