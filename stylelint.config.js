@@ -1,5 +1,6 @@
 module.exports = {
   rules: {
+    
     // Цвета и HEX‑коды
     'color-no-invalid-hex': true,
         // Что делает: запрещает некорректные HEX‑цвета (например, #xyz, #1234, #gggggg).
@@ -120,5 +121,6 @@ module.exports = {
     'font-family-name-quotes': 'always-where-recommended',
         // Что делает: ставит кавычки только там, где это требуется (например, для имён с пробелами: "Times New Roman").
         // Зачем: баланс между чистотой кода и стандартами CSS.
-  },
-}; 
+
+  }
+}
