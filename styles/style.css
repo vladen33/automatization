@@ -7,8 +7,7 @@
 }
 
 body {
-  color: yellow;;
+  color: yellow;
+  font-size: 16px;
+  padding: 0;
 }
-body { font-size: 16px; padding: 0px;}
-
-
