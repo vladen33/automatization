@@ -23,7 +23,9 @@
     "lintfix": "stylelint './src/**/*.css' --fix",
     "lintfixDist": "stylelint './dist/**/*.css' --fix",
     "checkAll": "npm run check && npm run lint",
-    "fixAll": "npm run formatSrc && npm run lintfix && npm run formatDist && npm run lintfixDist"
+    "fixAll": "npm run formatSrc && npm run lintfix && npm run formatDist && npm run lintfixDist",
+    "build": "gulp build",
+    "dev": "gulp"
   },
   "devDependencies": {
     "browser-sync": "^3.0.4",
