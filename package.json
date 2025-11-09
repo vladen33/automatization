@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'Привет!'",
+    "test": "echo 'Привет!!!'",
     "check": "prettier --check './{src,dist}/**/*.{html,css,js}'",
     "formatSrc": "prettier --write './src/**/*.{html,css,js}'",
     "formatDist": "prettier --write './dist/**/*.{html,css,js}'",
@@ -33,6 +33,8 @@
     "gulp": "^5.0.1",
     "gulp-concat-css": "^3.1.0",
     "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^10.0.0",
+    "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "stylelint": "^16.25.0"
   }
