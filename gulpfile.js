@@ -42,7 +42,7 @@ function css() {
         mediaquery(),
         cssnano()
     ]
-    return gulp.src('src/blocks/**/*.css')
+    return gulp.src('src/components/**/*.css')
         .pipe(plumber())
         .pipe(concat('bundle.css'))
         .pipe(postcss(plugins))
